@@ -1,5 +1,4 @@
 [build]
-  base = "Simifaz-Venture-Website"
   command = "npm run build"
   publish = "dist"
 

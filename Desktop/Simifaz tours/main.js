@@ -85,3 +85,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
     revealElements.forEach(el => observer.observe(el));
 });
+
+// Gallery Show More/Less functionality
+const showMoreBtn = document.getElementById('showMoreBtn');
+if (showMoreBtn) {
+    let isExpanded = false;
+    showMoreBtn.addEventListener('click', function () {
+        const hiddenItems = document.querySelectorAll('.gallery-item:nth-child(n+7)');
+
+        if (!isExpanded) {
+            // Show more
+            hiddenItems.forEach(item => {
+                item.classList.add('show');
+            });
+            this.textContent = 'Show Less';
+            isExpanded = true;
+        } else {
+            // Show less
+            hiddenItems.forEach(item => {
+                item.classList.remove('show');
+            });
+            this.textContent = 'Show More Photos';
+            isExpanded = false;
+
+            // Scroll to gallery section smoothly
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+}
